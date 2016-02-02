@@ -6,3 +6,6 @@
 out
 gen
 *.xml
+
+entries.csv
+usepackage.example

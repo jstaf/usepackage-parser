@@ -41,7 +41,7 @@ class ConfParser:
             sys.exit('Invalid filename.')
 
         # get regexps compiled to parse apart entries
-        id_rexp = re.compile('[\w+-._]')
+        id_rexp = re.compile('[\w+-._]+')
         name_rexp = re.compile('".*"')
         ver_rexp = re.compile('[0-9]*\.*')
         pointer_rexp = re.compile('<=\s*[^\s]+')
@@ -58,23 +58,20 @@ class ConfParser:
                     # check if we already have an entry for this, if not, create one
                     if entr_id in self.entries:
                         entry = self.entries[entr_id]
-                        entry.name = entr_name[1:(len(entr_name) - 2)]
+                        entry.name = entr_name[1:(len(entr_name) - 1)]
                         entry.version = entr_ver
                     else:
-                        self.entries[entr_id] = Entry(entr_id, entr_name[1:(len(entr_name) - 2)], entr_ver, None)
+                        self.entries[entr_id] = Entry(entr_id, entr_name[1:(len(entr_name) - 1)], entr_ver, None)
 
                 elif line[0].isalnum():
                     # this is an entry
                     entr_id = id_rexp.findall(line)[0]
                     # check if we already have an entry for this guy
-                    if entr_id in self.entries:
-                        entry = self.entries[entr_id]
-                    else:
+                    if entr_id not in self.entries:
                         self.entries[entr_id] = Entry(entr_id, None, ver_rexp.findall(line)[0], None)
-
-                    if pointer_rexp.search(line) is None:
+                    if pointer_rexp.search(line) is not None:
                         # its a pointer
-                        entry.pointsTo = pointer_rexp.findall(line)[0]
+                        self.entries[entr_id].pointsTo = pointer_rexp.findall(line)[0][2:]
         return
 
     '''
@@ -89,6 +86,7 @@ class ConfParser:
         return
 
 def main(argv):
+    if len(argv) < 2: sys.exit('Please specify an input file.')
     conf = ConfParser(argv[1])
     conf.writeToCsv()
 
