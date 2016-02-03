@@ -8,7 +8,7 @@ class Entry:
     id = ''
     name = ''
     pointsTo = None  # for entries that are simply pointers to the current version
-    version = ''
+    usage = ''
 
     def __init__(self, id, name, pointsTo):
         self.id = id
@@ -56,35 +56,58 @@ class ConfParser:
                     if entr_id in self.entries:
                         entry = self.entries[entr_id]
                         entry.name = entr_name[1:(len(entr_name) - 1)]
+                        if entry.name == '': entry.name = entry.id
                     else:
-                        self.entries[entr_id] = Entry(entr_id, entr_name[1:(len(entr_name) - 1)], None)
+                        entry = Entry(entr_id, entr_name[1:(len(entr_name) - 1)], None)
+                        if entry.name == '': entry.name = entry.id
+                        self.entries[entr_id] = entry
 
                 elif line[0].isalnum():
                     # this is an entry
                     entr_id = id_rexp.findall(line)[0]
                     # check if we already have an entry for this guy
                     if entr_id not in self.entries:
-                        self.entries[entr_id] = Entry(entr_id, None, None)
+                        self.entries[entr_id] = Entry(entr_id, entr_id, None)
                     if pointer_rexp.search(line) is not None:
                         # its a pointer
                         self.entries[entr_id].pointsTo = pointer_rexp.findall(line)[0][2:]
+
+        for key in self.entries.keys():
+            self.entries[key].usage = 'use ' + key
+
         return
+
+    def addEntriesFromTSV(self, filename):
+        with open(filename) as file:
+            header = True
+            for line in file:
+                if header:
+                    header = False
+                    continue
+                splat = line.split(sep='\t')
+                newEntry = Entry(splat[0], splat[1], None)
+                newEntry.usage = splat[2][:-1]
+                self.entries[splat[0]] = newEntry
 
     '''
     Dump entries to csv
     '''
-    def writeToCsv(self):
-        with open('entries.csv', 'w') as csv:
-            csv.write('id,name,pointsTo\n')
+    def writeToTSV(self):
+        with open('entries.tsv', 'w') as csv:
+            csv.write('id\tname\tpointsTo\n')
             for key in sorted(self.entries.keys()):
                 entry = self.entries[key]
-                csv.write(entry.id + ',' + str(entry.name) + ',' + str(entry.pointsTo) + '\n')
+                pointer = entry.pointsTo
+                if pointer is None: pointer = ''
+                csv.write(entry.id + '\t' + str(entry.name) + '\t' + pointer + '\t' + entry.usage + '\n')
         return
 
 def main(argv):
-    if len(argv) < 2: sys.exit('Please specify an input file.')
+    if len(argv) < 2: sys.exit('Usage: usepackage-parser.py </path/to/usepackage.conf> [tsv with other software]')
     conf = ConfParser(argv[1])
-    conf.writeToCsv()
+    if len(argv) == 3:
+        conf.addEntriesFromTSV(argv[2])
+    conf.writeToTSV()
 
 if __name__ == '__main__':
     main(sys.argv)

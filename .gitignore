@@ -7,5 +7,5 @@ out
 gen
 *.xml
 
-entries.csv
+*.tsv
 usepackage.example
