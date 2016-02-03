@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
+import os, sys, re
+
 __author__ = 'Jeff Stafford'
 
-import os, sys, re
 
 class Entry:
     id = ''
@@ -15,15 +16,6 @@ class Entry:
         self.name = name
         self.pointsTo = pointsTo
 
-    '''
-    Get the id of what the entry actually points to
-    '''
-    def getEntry(self):
-        entry = ''
-        if self.pointsTo is None:
-            return self.pointsTo
-        else:
-            return self.id
 
 class ConfParser:
     entries = {}
@@ -77,16 +69,20 @@ class ConfParser:
         return
 
     def addEntriesFromTSV(self, filename):
-        with open(filename) as file:
-            header = True
-            for line in file:
-                if header:
-                    header = False
-                    continue
-                splat = line.split(sep='\t')
-                newEntry = Entry(splat[0], splat[1], None)
-                newEntry.usage = splat[2][:-1]
-                self.entries[splat[0]] = newEntry
+        try:
+            with open(filename) as file:
+                header = True
+                for line in file:
+                    if header:
+                        header = False
+                        continue
+                    splat = line.split(sep='\t')
+                    newEntry = Entry(splat[0], splat[1], None)
+                    newEntry.usage = splat[2][:-1]
+                    self.entries[splat[0]] = newEntry
+        except:
+            sys.exit(filename + ' appears to be incorrectly formatted. Are you using spaces instead of tabs?')
+        return
 
     '''
     Dump entries to csv
@@ -100,6 +96,7 @@ class ConfParser:
                 if pointer is None: pointer = ''
                 csv.write(entry.id + '\t' + str(entry.name) + '\t' + pointer + '\t' + entry.usage + '\n')
         return
+
 
 def main(argv):
     if len(argv) < 2: sys.exit('Usage: usepackage-parser.py </path/to/usepackage.conf> [tsv with other software]')
