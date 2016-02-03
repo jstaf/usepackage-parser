@@ -2,7 +2,7 @@
 
 __author__ = 'Jeff Stafford'
 
-import os, sys, re, getopt
+import os, sys, re
 
 class Entry:
     id = ''
@@ -74,7 +74,6 @@ class ConfParser:
 
         for key in self.entries.keys():
             self.entries[key].usage = 'use ' + key
-
         return
 
     def addEntriesFromTSV(self, filename):
@@ -94,8 +93,8 @@ class ConfParser:
     '''
     def writeToTSV(self):
         with open('entries.tsv', 'w') as csv:
-            csv.write('id\tname\tpointsTo\n')
-            for key in sorted(self.entries.keys()):
+            csv.write('id\tname\tpointsTo\tusage\n')
+            for key in sorted(self.entries.keys(), key=str.lower):
                 entry = self.entries[key]
                 pointer = entry.pointsTo
                 if pointer is None: pointer = ''
