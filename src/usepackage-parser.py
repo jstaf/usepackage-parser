@@ -61,8 +61,12 @@ class ConfParser:
                     if entr_id not in self.entries:
                         self.entries[entr_id] = Entry(entr_id, entr_id, None)
                     if pointer_rexp.search(line) is not None:
-                        # its a pointer
-                        self.entries[entr_id].pointsTo = pointer_rexp.findall(line)[0][2:]
+                        # its (probably) a pointer
+                        pointerID = pointer_rexp.findall(line)[0][2:]
+
+                        # but let's double-check to make sure it's not simply a dependency
+                        if pointerID.find(entr_id) != -1:
+                            self.entries[entr_id].pointsTo = pointerID
 
         for key in self.entries.keys():
             self.entries[key].usage = 'use ' + key
