@@ -9,3 +9,5 @@ gen
 
 *.tsv
 usepackage.example
+*#
+*.txt

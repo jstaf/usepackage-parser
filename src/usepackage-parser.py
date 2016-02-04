@@ -97,13 +97,29 @@ class ConfParser:
                 csv.write(entry.id + '\t' + str(entry.name) + '\t' + pointer + '\t' + entry.usage + '\n')
         return
 
+    def writeWikiTable(self):
+        with open('wikitable.txt', 'w') as tab:
+            # header
+            tab.write('{| class="wikitable" style="text-align: center; \n')
+            tab.write('! Software Name / Version !! Package Name !! Points To !! Usage Notes \n')
+
+            # write entries to table
+            for key in sorted(self.entries.keys(), key=str.lower):
+                entry = self.entries[key]
+                pointer = entry.pointsTo
+                if pointer is None: pointer = ''
+                tab.write('|-\n| ' + entry.name + ' || ' + entry.id + ' || ' + pointer + ' || ' + entry.usage + ' \n')
+
+            # close table
+            tab.write('|}')
+
 
 def main(argv):
     if len(argv) < 2: sys.exit('Usage: usepackage-parser.py </path/to/usepackage.conf> [tsv with other software]')
     conf = ConfParser(argv[1])
     if len(argv) == 3:
         conf.addEntriesFromTSV(argv[2])
-    conf.writeToTSV()
+    conf.writeWikiTable()
 
 if __name__ == '__main__':
     main(sys.argv)
