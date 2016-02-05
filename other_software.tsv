@@ -1,0 +1,8 @@
+id	name	usage
+GATK	Genome Analysis Toolkit (GATK)	java -jar /opt/gatk/GenomeAnalysisTK.jar <extra arguments here>
+BioScripts	BioScripts Python package	"use anaconda2" OR "use anaconda3"
+BioPython	BioPython Python package	"use anaconda2"
+HTSeq	HTSeq Python package	"use anaconda3"
+Perl 5	Perl 5 (version 5.10)	Already on PATH, simply type "perl"
+Java 7	Java 7	Already on PATH, simply type "java"
+PLINK	PLINK	Already on PATH
