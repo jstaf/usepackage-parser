@@ -1,0 +1,269 @@
+{| class="wikitable" style="text-align: left; 
+! Software Name / Version !! Package Name !! Points To !! Usage Notes 
+|-
+| abaqus-6.10 || abaqus-6.10 ||  || use abaqus-6.10 
+|-
+| abaqus-6.11 || abaqus-6.11 ||  || use abaqus-6.11 
+|-
+| abaqus67 || abaqus67 ||  || use abaqus67 
+|-
+| Aces2 2005.1 || aces2 ||  || use aces2 
+|-
+| ADF (production - v2012.01) || adf ||  adf2012.01 || use adf 
+|-
+| ADF 2009.01 || adf2009.01 ||  || use adf2009.01 
+|-
+| ADF 2012.01 || adf2012.01 ||  || use adf2012.01 
+|-
+| Adina (production - v8.5) || adina ||  || use adina 
+|-
+| Adina 8.4.3 || adina-8.4.3 ||  || use adina-8.4.3 
+|-
+| Adina 8.5.2 || adina-8.5.2 ||  || use adina-8.5.2 
+|-
+| Adina 8.5 || adina85 ||  || use adina85 
+|-
+| Amber (production - v9) || amber ||  amber-common || use amber 
+|-
+| amber-common || amber-common ||  || use amber-common 
+|-
+| Amber 7 || amber7 ||  || use amber7 
+|-
+| Amber 9 || amber9 ||  || use amber9 
+|-
+| Amber 7 (64 bit) || amber_64bit-7 ||  || use amber_64bit-7 
+|-
+| ansys || ansys ||  || use ansys 
+|-
+| ANSYS (production - v12) || ANSYS ||  || use ANSYS 
+|-
+| Fluent (Ansys 14 on Linux) || ansys14 ||  || use ansys14 
+|-
+| Autodock 3.05 || autodock305 ||  || use autodock305 
+|-
+| Autodock 4.2.5  || autodock425 ||  || use autodock425 
+|-
+| Basic Linear Algebra Communication Subprograms v1.1 || blacs ||  || use blacs 
+|-
+| Blastwave (http://www.blastwave.org/) Solaris Packages || blastwave ||  || use blastwave 
+|-
+| Boost Libraries (production) || boost ||  boost-1.35.0 || use boost 
+|-
+| Boost Libraries 1.35.0 (with MPI = ClusterTools 7) || boost-1.35.0 ||  || use boost-1.35.0 
+|-
+| Sun Berkeley UNIX style commands || bsd ||  || use bsd 
+|-
+| Solaris Compiler Support Tools || ccs ||  || use ccs 
+|-
+| chemistry || chemistry ||  || use chemistry 
+|-
+| COMSOL || COMSOL ||  || use COMSOL 
+|-
+| CoolTools for Studio 12 (implies studio12) || cooltools12 ||  || use cooltools12 
+|-
+| CoolTools 12 now included in Studio 12 Express || cooltools12x ||  || use cooltools12x 
+|-
+| Car-Parinello MD (production - Version 3.13) || cpmd ||  cpmd-3.13 || use cpmd 
+|-
+| Car-Parinello Molecular Dynamics Version 3.13 (64 bit) || cpmd-3.13 ||  || use cpmd-3.13 
+|-
+| Crystal 98 || crystal ||  || use crystal 
+|-
+| Sun ClusterTools 6.0 MPI (default version) || ct6 ||  || use ct6 
+|-
+| Sun ClusterTools 7.1 OpenMPI (new production version) || ct7 ||  || use ct7 
+|-
+| Sun ClusterTools 8.1 || ct8 ||  ct8.1 || use ct8 
+|-
+| Sun ClusterTools 8.0 OpenMPI (old release version) || ct8.0 ||  || use ct8.0 
+|-
+| Sun ClusterTools 8.1 OpenMPI (release version) || ct8.1 ||  || use ct8.1 
+|-
+| Sun ClusterTools 8.2 OpenMPI || ct8.2 ||  || use ct8.2 
+|-
+| Sun ClusterTools 8.2.1 OpenMPI || ct8.2.1 ||  || use ct8.2.1 
+|-
+| Sun ClusterTools 8.2.1c OpenMPI || ct8.2.1c ||  || use ct8.2.1c 
+|-
+| DelPhi || delphi ||  || use delphi 
+|-
+| eb || eb ||  || use eb 
+|-
+| The Erlang Programming Language - http://www.erlang.org/ || erlang ||  || use erlang 
+|-
+| ESP-r production (v11.5) || espr ||  espr-11.5 || use espr 
+|-
+| ESP-r v11.5 || espr-11.5 ||  || use espr-11.5 
+|-
+| Nag Iris Explorer || explorer ||  || use explorer 
+|-
+| FFTW v. 3.3.3 (with OpenMP) || fftw3_32bit ||  || use fftw3_32bit 
+|-
+| FFTW v. 3.3.3 (with OpenMP) || fftw3_64bit ||  || use fftw3_64bit 
+|-
+| Fidap (production - v8.7.4) || fidap ||  || use fidap 
+|-
+| Fidap 8.7.4 || fidap87 ||  || use fidap87 
+|-
+| Fluent (production - v6.3.26 in 32-bit) || fluent ||  || use fluent 
+|-
+| Fluent (production - v6.3.26 in 64-bit) || fluent_64bit ||  || use fluent_64bit 
+|-
+| Sun Fortress Interpreter (1.0) || fortress ||  || use fortress 
+|-
+| Gaussian 03 || g03 ||  || use g03 
+|-
+| Gaussian 09 || g09 ||  || use g09 
+|-
+| Gaussian 09 Update A.02 || g09a2 ||  || use g09a2 
+|-
+| Gaussian 09 Update B.01 || g09b1 ||  || use g09b1 
+|-
+| Gaussian 09 Update C.01 || g09c1 ||  || use g09c1 
+|-
+| Gaussian 09 Update D.01 || g09d1 ||  || use g09d1 
+|-
+| Gambit (production - v2.4.6) || gambit ||  gambit24 || use gambit 
+|-
+| Gambit 2.4.6 || gambit24 ||  || use gambit24 
+|-
+| Gamess (current - Dec5-2014-R1 64 bit) || gamess ||  || use gamess 
+|-
+| Current Gaussian Version || gaussian ||  || use gaussian 
+|-
+| GNU Compiler Collection v2 ('gcc -v' for exact version when selected) || gcc2 ||  || use gcc2 
+|-
+| GNU Compiler Collection v3 ('gcc -v' for exact version when selected) || gcc3 ||  || use gcc3 
+|-
+| GNU Compiler Collection v4 ('gcc -v' for exact version when selected) || gcc4 ||  || use gcc4 
+|-
+| Cool Tools - GCC for SPARC Systems (currently v4.2.0) || gccfss ||  || use gccfss 
+|-
+| Glasgow Haskell Compiler (production version) || ghc ||  ghc-6.8.2 || use ghc 
+|-
+| Glasgow Haskell Compiler 6.8.2 || ghc-6.8.2 ||  || use ghc-6.8.2 
+|-
+| Prefer various GNU commands over Solaris versions || gnucompat ||  || use gnucompat 
+|-
+| GNU Pascal Compiler (64-bit compilations only) || gpc ||  || use gpc 
+|-
+| GNU Scientific Library (32-bit) v1.11 || gsl_32bit-1.11 ||  || use gsl_32bit-1.11 
+|-
+| GNU Scientific Library (64-bit) v1.11 || gsl_64bit-1.11 ||  || use gsl_64bit-1.11 
+|-
+| HPCVL Working Template || hwt ||  || use hwt 
+|-
+| m9000env || m9000env ||  || use m9000env 
+|-
+| Matlab (production - R2009bSP1) || matlab ||  matlab-R2009bSP1 || use matlab 
+|-
+| Matlab pass to Linux || matlab-linux ||  || use matlab-linux 
+|-
+| Matlab (R2008b) || matlab-r2008b ||  || use matlab-r2008b 
+|-
+| Matlab (workshop - R2009a) || matlab-r2009a ||  || use matlab-r2009a 
+|-
+| Matlab R2009b || matlab-R2009bSP1 ||  || use matlab-R2009bSP1 
+|-
+| MOE (production - 2008.10) || moe ||  || use moe 
+|-
+| Advanced Interactive 3D-Graphics for Molecular Sciences || molekel ||  || use molekel 
+|-
+| NAG Toolset and Libraries || nag ||  || use nag 
+|-
+| NAG Compiler || nag_compiler ||  || use nag_compiler 
+|-
+| NAMD2 2.7 || namd ||  || use namd 
+|-
+| Network Common Data Form || netcdf ||  || use netcdf 
+|-
+| empty paths || none ||  || use none 
+|-
+| NWChem (production - v5.0) || nwchem ||  nwchem50 || use nwchem 
+|-
+| NWChem 5.0 || nwchem50 ||  || use nwchem50 
+|-
+| OpenFOAM 1.6 || openfoam ||  || use openfoam 
+|-
+| An Object-Oriented Matrix Language || ox4 ||  || use ox4 
+|-
+| PETSc (production - v2.3.3-p13) || petsc ||  petsc-2.3.3-p13 || use petsc 
+|-
+| PETSc v2.3.3-p13 || petsc-2.3.3-p13 ||  || use petsc-2.3.3-p13 
+|-
+| PETSc v3.1-p4 || petsc-3.1-p4 ||  || use petsc-3.1-p4 
+|-
+| PETSc v3.5.2 (legacy) || petsc-3.5.2 ||  || use petsc-3.5.2 
+|-
+| PowerFlow (production - v4.0d) || powerflow ||  powerflow40d || use powerflow 
+|-
+| PowerFlow 4.0d || powerflow40c ||  || use powerflow40c 
+|-
+| powerflow40d || powerflow40d ||  || use powerflow40d 
+|-
+| PVM 3 || pvm ||  || use pvm 
+|-
+| R statistical software (production alias) || R ||  R-2.15.2 || use R 
+|-
+| R statistical software (older version) || R-2.13.1 ||  || use R-2.13.1 
+|-
+| R statistical software (newest version, 32-bit) || R-2.15.2 ||  || use R-2.15.2 
+|-
+| R statistical software (newest version, 64-bit) || R-2.15.2_64bit ||  || use R-2.15.2_64bit 
+|-
+| R statistical software (64-bit, extensions) || R-2.6.2 ||  || use R-2.6.2 
+|-
+| R statistical software (production alias, 64 bit) || R_64bit ||  || use R_64bit 
+|-
+| SAM/QFS Tools || sam ||  || use sam 
+|-
+| Scalable LAPACK v1.7.4 || scalapack ||  || use scalapack 
+|-
+| Scilab v4.1.1 || scilab ||  || use scilab 
+|-
+| Sun Freeware (companion software) || sfw ||  || use sfw 
+|-
+| Sun Grid Engine 6 || sge6 ||  || use sge6 
+|-
+| Sun Studio 12 Update 4 Compilers and Tools (for T7 beta) || solarisstudio12.4 ||  || use solarisstudio12.4 
+|-
+| Sun Studio Express (3/09) Compilers and Tools || ssx0903 ||  || use ssx0903 
+|-
+| Stata release 9 updated || stata ||  || use stata 
+|-
+| Sun Studio 11 Compilers and Tools || studio11 ||  || use studio11 
+|-
+| Sun Studio 12 Compilers and Tools || studio12 ||  || use studio12 
+|-
+| Sun Studio 12 Update 1 Compilers and Tools || studio12u1 ||  || use studio12u1 
+|-
+| Sun Studio 12 Update 2 Compilers and Tools || studio12u2 ||  || use studio12u2 
+|-
+| Sun Studio 12 Update 3 Compilers and Tools || studio12u3 ||  || use studio12u3 
+|-
+| Sun Studio 12 Update 4 Compilers and Tools || studio12u4 ||  || use studio12u4 
+|-
+| Sun Studio 12 Express (11/08) Compilers and Tools || studio12x ||  || use studio12x 
+|-
+| Sun Studio/Forte 7 Compilers and Tools || studio7 ||  || use studio7 
+|-
+| System administration commands || sysadm ||  || use sysadm 
+|-
+| Standard Solaris commands || system ||  || use system 
+|-
+| Tcl & Tk 8.5.2 (32 bit) || tcltk-32 ||  || use tcltk-32 
+|-
+| Tcl & Tk 8.5.2 (64 bit) || tcltk-64 ||  || use tcltk-64 
+|-
+| vmd || vmd ||  || use vmd 
+|-
+| Visualization Software Version  1.8.7 || VMD ||  || use VMD 
+|-
+| Sun Workshop 6 Compilers and Tools || workshop6 ||  || use workshop6 
+|-
+| X11 Windowing System Tools and Libraries || x11 ||  || use x11 
+|-
+| Prefer XPG4 binaries over /usr/bin || xpg4 ||  || use xpg4 
+|-
+| Prefer XPG6 binaries over /usr/bin || xpg6 ||  || use xpg6 
+|}

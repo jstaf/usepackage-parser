@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 import os, sys, re
 
@@ -104,7 +104,7 @@ class ConfParser:
     def writeWikiTable(self):
         with open('wikitable.txt', 'w') as tab:
             # header
-            tab.write('{| class="wikitable" style="text-align: center; \n')
+            tab.write('{| class="wikitable" style="text-align: left; \n')
             tab.write('! Software Name / Version !! Package Name !! Points To !! Usage Notes \n')
 
             # write entries to table

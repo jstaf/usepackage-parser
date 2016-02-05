@@ -1,0 +1,687 @@
+standard-user-settings := sge6, ct8.2.1c, ct6, cooltools12, x11,
+                          site, blastwave, sam, ccs,
+                          sysadm, system, basic, eb;
+chemistry := g09, autodock425 ;
+
+# ACES 2
+>> aces2 : "Aces2 2005.1" <<
+aces2 :			PATH += "/opt/aces2-2005.1/bin";
+
+# Abaqus 6.7
+abaqus67 :		PATH += "/opt/abaqus/6.7/64bit/Commands",
+			PATH += "/bin",
+			LM_LICENSE_FILE += "/opt/abaqus/6.7/64bit/License/license.dat";
+
+# Abaqus 6.10
+abaqus-6.10 :		PATH += "/opt/abaqus/6.10/Commands",
+			PATH += "/bin",
+			LM_LICENSE_FILE += "/opt/abaqus/6.10/License/license.dat";
+
+# Abaqus 6.11
+abaqus-6.11 :		PATH += "/opt/abaqus/6.11/Commands",
+			PATH += "/bin",
+			LM_LICENSE_FILE += "/opt/abaqus/6.11/License/license.dat";
+>> adf : "ADF (production - v2012.01)" <<
+adf <= adf2012.01 : <[ /bin/true ]> ;
+
+>> adf2012.01 : "ADF 2012.01" <<
+adf2012.01 <= studio12u1 : PATH += "/opt/adf-2012.01/bin",
+                           ADFHOME = "/opt/adf-2012.01",
+                           ADFBIN = "/opt/adf-2012.01/bin",
+                           ADFRESOURCES = "/opt/adf-2012.01/atomicdata",
+                           SCMLICENSE = "/opt/licenses/hpcvl_adf/license",
+                           LD_LIBRARY_PATH += "/opt/studio12/SUNWspro/lib",
+                           SCM_TMPDIR = "$SCRATCHDIR",
+                           SCM_USETMPDIR = "yes",
+                           NSCM = "8",
+                           MPIDIR = "/opt/SUNWhpc/HPC8.2.1c";
+
+>> adf2009.01 : "ADF 2009.01" <<
+adf2009.01 <= ct7 :     PATH += "/opt/adf-2009.01/bin",
+                        ADFHOME = "/opt/adf-2009.01",
+                        ADFBIN = "/opt/adf-2009.01/bin",
+                        ADFRESOURCES = "/opt/adf-2009.01/atomicdata",
+                        SCMLICENSE = "/opt/licenses/hpcvl_adf/license",
+                        LD_LIBRARY_PATH += "/opt/studio12/SUNWspro/lib",
+                        SCM_TMPDIR = "$SCRATCHDIR",
+                        SCM_USETMPDIR = "yes",
+                        NSCM = "8",
+                        MPIDIR = "/opt/SUNWhpc/HPC7.0";
+
+>> adina : "Adina (production - v8.5)" <<
+adina :			PATH += "/opt/adina-8.5.2/tools";
+
+>> adina-8.5.2 : "Adina 8.5.2" <<
+adina-8.5.2 :		PATH += "/opt/adina-8.5.2/tools";
+
+>> adina85 : "Adina 8.5" <<
+adina85 :		PATH += "/opt/adina-8.5/tools";
+
+>> adina-8.4.3 : "Adina 8.4.3" <<
+adina-8.4.3 :		PATH += "/opt/adina-8.4.3/tools";
+
+# NB this ALWAYS points to ClusterTools 6
+amber-common:		LD_LIBRARY_PATH += "/opt/studio12/studio12/SUNWspro/lib",
+			LD_LIBRARY_PATH += "/opt/SUNWhpc/lib";
+
+>> amber : "Amber (production - v9)" <<
+amber <= amber-common :		AMBERHOME = "/opt/amber-9",	
+				PATH += "/opt/amber-9/exe" ;
+
+# Amber 7
+>> amber7 : "Amber 7" <<
+amber7 <= amber-common :	AMBERHOME = "/opt/amber-7",	
+				PATH += "/opt/amber-7/exe" ;
+
+# Amber 7
+>> amber_64bit-7 : "Amber 7 (64 bit)" <<
+amber_64bit-7 <= amber-common :	AMBERHOME = "/opt/amber_64bit-7",	
+				PATH += "/opt/amber_64bit-7/exe" ;
+
+# Amber 9
+>> amber9 : "Amber 9" <<
+amber9 <= amber-common :	AMBERHOME = "/opt/amber-9",	
+				PATH += "/opt/amber-9/exe" ;
+
+>> ANSYS : "ANSYS (production - v12)" <<
+ansys :		PATH += "/opt/ansys/12/64bit/v121/ansys/bin";
+
+# Autodock 3.05
+>> autodock305 : "Autodock 3.05" <<
+autodock305 :			AUTODOCK_UTI = "/opt/autodock-3.05/share",
+				PATH += "/opt/autodock-3.05/bin/sun.SunOS_5.5",
+				PATH += "/opt/autodock-3.05/share";
+# Autodock 4.2.5.1
+>> autodock425 : "Autodock 4.2.5 " <<
+autodock425 :           	PATH += "/opt/autodock/bin/sun.SunOS_5.5",
+                        	LD_LIBRARY_PATH += "/opt/gccfss/gcc/lib/gcc/sparc-sun-solaris2.10/4.2.0";
+
+>> basic: "Initial Settings" <<
+basic :				EDITOR = "vi",
+				SCRATCHDIR = "/scratch/$LOGNAME",
+				WORKDIR = "/u1/work/$LOGNAME",
+				MANPATH += /opt/usepackage/man,
+				PKG_CONFIG_PATH += /usr/sfw/lib/pkgconfig ;
+
+>> blacs : "Basic Linear Algebra Communication Subprograms v1.1" <<
+blacs * SunOS :			LD_LIBRARY_PATH += /opt/blacs-1.1/LIB ;
+
+
+>> blastwave : "Blastwave (http://www.blastwave.org/) Solaris Packages" <<
+blastwave * SunOS 5.* :		PATH += /opt/csw/bin,
+				MANPATH += /opt/csw/share/man,
+				INFOPATH += /opt/csw/share/info,
+				PKG_CONFIG_PATH += /opt/csw/lib/pkgconfig ;
+
+>> boost : "Boost Libraries (production)" <<
+boost <= boost-1.35.0 :		<[ /bin/true ]> ;
+
+>> boost-1.35.0 : "Boost Libraries 1.35.0 (with MPI = ClusterTools 7)" <<
+boost-1.35.0 <= ct7 :		BOOST_ROOT = /opt/boost-1.35.0,
+				BOOST_INCLUDE = $BOOST_ROOT/include,
+				BOOST_LIB = $BOOST_ROOT/lib ;
+
+# Neglect not the Berkelian way...
+>> bsd : "Sun Berkeley UNIX style commands" <<
+bsd * SunOS :			PATH += /usr/ucb,
+				LD_LIBRARY_PATH += /usr/ucblib ;
+
+>> ccs : "Solaris Compiler Support Tools" <<
+ccs * SunOS 5.* :		PATH += /usr/ccs/bin;
+
+COMSOL :			PATH += /opt/COMSOL/3.5a/bin;
+
+>> cooltools12 : "CoolTools for Studio 12 (implies studio12)" <<
+cooltools12 <= studio12u1 :	PATH += "/opt/studio12/SUNWspro/extra/bin",
+                                MANPATH += "/opt/studio12/SUNWspro/extra/man";
+
+>> cooltools12x : "CoolTools 12 now included in Studio 12 Express" <<
+cooltools12x <= studio12x :	<[ /bin/true ]>;
+
+>> cpmd-3.13 : "Car-Parinello Molecular Dynamics Version 3.13 (64 bit)" <<
+cpmd-3.13 : 	PATH += "/opt/cpmd/3.13/64bit";
+
+>> cpmd : "Car-Parinello MD (production - Version 3.13)" <<
+cpmd <= cpmd-3.13 :     <[ /bin/true ]> ;
+
+>> crystal : "Crystal 98" <<
+crystal :		PATH += /opt/crystal98-1.0b/bin/Solaris/std;
+
+>> ct6 : "Sun ClusterTools 6.0 MPI (default version)" <<
+ct6 :			PATH += /opt/SUNWhpc/HPC6.0/bin,
+			MANPATH += /opt/SUNWhpc/HPC6.0/man;
+
+>> ct7 : "Sun ClusterTools 7.1 OpenMPI (new production version)" <<
+ct7 :			PATH += /opt/SUNWhpc/HPC7.1/bin,
+			MANPATH += /opt/SUNWhpc/HPC7.1/man;
+
+>> ct8.0 : "Sun ClusterTools 8.0 OpenMPI (old release version)" <<
+ct8.0 :			PATH += /opt/SUNWhpc/HPC8.0/bin,
+			MANPATH += /opt/SUNWhpc/HPC8.0/man;
+
+# 2008-11-14: TONY NB they inserted "sun" into the path for some reason
+#
+>> ct8.1 : "Sun ClusterTools 8.1 OpenMPI (release version)" <<
+ct8.1 :			PATH += /opt/SUNWhpc/HPC8.1/sun/bin,
+			MANPATH += /opt/SUNWhpc/HPC8.1/sun/man;
+
+>> ct8.2 : "Sun ClusterTools 8.2 OpenMPI" <<
+ct8.2 :		PATH += /opt/SUNWhpc/HPC8.2/sun/bin,
+			OPAL_PREFIX = /opt/SUNWhpc/HPC8.2/sun,
+			MANPATH += /opt/SUNWhpc/HPC8.2/sun/instrument/man;
+
+>> ct8.2.1 : "Sun ClusterTools 8.2.1 OpenMPI" <<
+ct8.2.1 :		PATH += /opt/SUNWhpc/HPC8.2.1/bin,
+			OPAL_PREFIX = /opt/SUNWhpc/HPC8.2.1,
+			MANPATH += /opt/SUNWhpc/HPC8.2.1/man;
+
+>> ct8.2.1c : "Sun ClusterTools 8.2.1c OpenMPI" <<
+ct8.2.1c :		PATH += /opt/SUNWhpc/HPC8.2.1c/sun/bin,
+			OPAL_PREFIX = /opt/SUNWhpc/HPC8.2.1c/sun,
+			MANPATH += /opt/SUNWhpc/HPC8.2.1c/sun/instrument/man;
+
+>> ct8 : "Sun ClusterTools 8.1" <<
+ct8 <= ct8.1 : <[ /bin/true ]>;
+
+>> delphi : "DelPhi" <<
+delphi :		PATH += /opt/delphi;
+
+### If you absolutely insist on such a security hole: ###
+>> dot : "append current directory to PATH (possible security hole)" <<
+dot * * * * {bash,sh} :            	<[ PATH=$PATH:. ]> ;
+dot * * * * {csh,tcsh} :             	<[ set path=($path .) ]> ;
+
+# >> ddt : "Allinea Distributed Debugging Tool" <<
+# ddt :			PATH += /opt/ddt-1.10/bin;
+
+>> erlang : "The Erlang Programming Language - http://www.erlang.org/" <<
+erlang :        PATH += /opt/erlang/bin,
+		MANPATH += /opt/erlang/man ;
+
+eb * * * * {sh,ksh,bash} :   <[ . /opt/portal-sgd-apps/export_bug/settings.sh ]> ;
+eb * * * * {csh,tcsh} : <[ source /opt/portal-sgd-apps/export_bug/settings.csh ]> ;
+
+
+>> espr-11.5 : "ESP-r v11.5" <<
+espr-11.5 :		PATH += /opt/espr-11.5/esp-r/bin;
+
+>> espr : "ESP-r production (v11.5)" <<
+espr <= espr-11.5 :	<[ /bin/true ]>;
+ 
+
+>> explorer : "Nag Iris Explorer" <<
+explorer <= nag:	EXPLORERHOME = "/opt/nag/explorer",
+			PATH += "/opt/nag/explorer/bin",
+			SO_MATERIAL_DIR = "/opt/nag/explorer/data/materials",
+			OIV_PSFONT_PATH =  "/opt/nag/explorer/data/fonts:/usr/openwin/lib/X11/fonts/Type1",
+			CXGLTYPE = "mesagl",
+			LD_LIBRARY_PATH += "/opt/studio11/SUNWspro/lib",
+			LD_LIBRARY_PATH += "/opt/nag/explorer/lib";
+
+>> fftw3_32bit: "FFTW v. 3.3.3 (with OpenMP)" <<
+fftw3_32bit * SunOS :	FFTW_DIR = /opt/fftw/fftw_32bit-3.3.3,
+			FFTW_INCLUDE = $FFTW_DIR/include,
+			FFTW_LIB = $FFTW_DIR/lib,
+			LIBFFTW = "-lfftw3";
+
+>> fftw3_64bit: "FFTW v. 3.3.3 (with OpenMP)" <<
+fftw3_64bit * SunOS :	FFTW_DIR = /opt/fftw/fftw_64bit-3.3.3,
+			FFTW_INCLUDE = $FFTW_DIR/include,
+			FFTW_LIB = $FFTW_DIR/lib,
+			LIBFFTW = "-lfftw3";
+
+# Fidap 
+>> fidap : "Fidap (production - v8.7.4)" <<
+fidap :			PATH += "/opt/fidap-8.7.4/Fluent.Inc/bin",
+			LD_LIBRARY_PATH += "/opt/SUNWhpc/lib:/opt/studio11/SUNWspro/lib",
+			FIDAPSCR = "/scratch/$LOGNAME",
+			LM_LICENSE_FILE += "/opt/fidap-8.7.4/Fluent.Inc/license/license.dat",
+			FLUENT_ARCH = "ultra",
+			FLUENT_INC = "/opt/fidap-8.7.4/Fluent.Inc",
+			FLUENT_LICENSE_FILE = "/opt/fidap-8.7.4/Fluent.Inc/license/license.dat";
+
+# Fidap 8.7.4 
+>> fidap87 : "Fidap 8.7.4" <<
+fidap87 :		PATH += "/opt/fidap-8.7.4/Fluent.Inc/bin",
+			LM_LICENSE_FILE += "/opt/fidap-8.7.4/Fluent.Inc/license/license.dat",
+			LD_LIBRARY_PATH += "/opt/SUNWhpc/lib:/opt/studio11/SUNWspro/lib",
+			FIDAPSCR = "/scratch/$LOGNAME",
+			FLUENT_ARCH = "ultra",
+			FLUENT_INC = "/opt/fidap-8.7.4/Fluent.Inc",
+			FLUENT_LICENSE_FILE = "/opt/fidap-8.7.4/Fluent.Inc/license/license.dat";
+
+# Fluent Ansys 14
+>> ansys14 : "Fluent (Ansys 14 on Linux)" <<
+ansys14 :               PATH += "/opt/fluent/ansys-14.0/v140/fluent/bin",
+                        LM_LICENSE_FILE += "/opt/fluent/Fluent.Inc/license/license.dat",
+                        FLUENT_ARCH = "lnamd64",
+                        FLUENT_LICENSE_FILE = "/opt/fluent/Fluent.Inc/license/license.dat";
+
+# Fluent
+>> fluent : "Fluent (production - v6.3.26 in 32-bit)" <<
+fluent :		PATH += "/opt/fluent/Fluent.Inc/bin",
+			LM_LICENSE_FILE += "/opt/fluent/Fluent.Inc/license/license.dat",
+			FLUENT_ARCH = "ultra",
+			FLUENT_INC = "/opt/fluent/Fluent.Inc",
+			FLUENT_LICENSE_FILE = "/opt/fluent/Fluent.Inc/license/license.dat";
+
+# Fluent 
+>> fluent_64bit : "Fluent (production - v6.3.26 in 64-bit)" <<
+fluent_64bit :		PATH += "/opt/fluent/Fluent.Inc/bin",
+			LM_LICENSE_FILE += "/opt/fluent/Fluent.Inc/license/license.dat",
+			FLUENT_ARCH = "ultra_64",
+			FLUENT_INC = "/opt/fluent/Fluent.Inc",
+			FLUENT_LICENSE_FILE = "/opt/fluent/Fluent.Inc/license/license.dat";
+
+>> fortress : "Sun Fortress Interpreter (1.0)" <<
+fortress :      FORTRESS_HOME=/opt/fortress/PFC,
+                PATH += $FORTRESS_HOME/bin ;
+
+# Gambit
+>> gambit : "Gambit (production - v2.4.6)" <<
+gambit <= gambit24 : <[ /bin/true ]> ;
+
+>> gambit24 : "Gambit 2.4.6" <<
+gambit24 :		PATH += "/opt/gambit-2.4.6/Fluent.Inc/bin",
+			LM_LICENSE_FILE += "/opt/gambit-2.4.6/Fluent.Inc/license/license.dat",
+			FLUENT_ARCH = "ultra",
+			FLUENT_INC = "/opt/gambit-2.4.6/Fluent.Inc",
+			LD_LIBRARY_PATH += "/opt/studio12/SUNWspro/lib",
+			FLUENT_LICENSE_FILE = "/opt/gambit-2.4.6/Fluent.Inc/license/license.dat";
+
+# GAMESS 
+
+>> gamess : "Gamess (current - Dec5-2014-R1 64 bit)" <<
+gamess : PATH += /opt/gamess/Dec5-2014-R1 ;
+
+# Gaussian (default version)
+>> gaussian : "Current Gaussian Version" <<
+gaussian <= g09: <[ /bin/true ]> ;
+
+# Gaussian 09 Update 1
+>> g09a2 : "Gaussian 09 Update A.02" <<
+g09a2 * * * * {sh,ksh,bash}:      g09root = "/opt/gaussian/g09a2",
+                                 <[ . /opt/gaussian/g09a2/g09/bsd/g09.profile ]>,
+				LD_LIBRARY_PATH += "/opt/studio12/studio12/SUNWspro/lib/v9",
+                                 GAUSS_SCRDIR = "/scratch/$LOGNAME";
+g09a2 * * * * {csh,tcsh}:         g09root = "/opt/gaussian/g09a2",
+                                 <[ source /opt/gaussian/g09a2/g09/bsd/g09.login ]>,
+				LD_LIBRARY_PATH += "/opt/studio12/studio12/SUNWspro/lib/v9",
+                                 GAUSS_SCRDIR = "/scratch/$LOGNAME";
+
+# Gaussian 09 Update 2
+>> g09b1 : "Gaussian 09 Update B.01" <<
+g09b1 * * * * {sh,ksh,bash}:      g09root = "/opt/gaussian/g09b1",
+                                 <[ . /opt/gaussian/g09/bsd/g09.profile ]>,
+				LD_LIBRARY_PATH += "/opt/studio12/studio12/SUNWspro/lib/v9",
+                                 GAUSS_SCRDIR = "/scratch/$LOGNAME";
+g09b1 * * * * {csh,tcsh}:         g09root = "/opt/gaussian/g09b1",
+                                 <[ source /opt/gaussian/g09/bsd/g09.login ]>,
+				LD_LIBRARY_PATH += "/opt/studio12/studio12/SUNWspro/lib/v9",
+                                 GAUSS_SCRDIR = "/scratch/$LOGNAME";
+
+# Gaussian 09 Update 3
+>> g09c1 : "Gaussian 09 Update C.01" <<
+g09c1 * * * * {sh,ksh,bash}:     g09root = "/opt/gaussian/g09c1",
+                                 <[ . /opt/gaussian/g09c1/g09/bsd/g09.profile ]>,
+                                 LD_LIBRARY_PATH += "/opt/studio12.2/lib/v9",
+                                 GAUSS_SCRDIR = "/scratch/$LOGNAME";
+g09c1 * * * * {csh,tcsh}:         g09root = "/opt/gaussian/g09c1",
+                                 <[ source /opt/gaussian/g09c1/g09/bsd/g09.login ]>,
+                                LD_LIBRARY_PATH += "/opt/studio12.2/lib/v9",
+                                 GAUSS_SCRDIR = "/scratch/$LOGNAME";
+
+# Gaussian 09 Update 4
+>> g09d1 : "Gaussian 09 Update D.01" <<
+g09d1 * * * * {sh,ksh,bash}:     g09root = "/opt/gaussian/g09d1",
+                                 <[ . /opt/gaussian/g09d1/g09/bsd/g09.profile ]>,
+                                 LD_LIBRARY_PATH += "/opt/studio12.3/lib/v9",
+                                 GAUSS_SCRDIR = "/scratch/$LOGNAME";
+g09d1 * * * * {csh,tcsh}:         g09root = "/opt/gaussian/g09d1",
+                                 <[ source /opt/gaussian/g09d1/g09/bsd/g09.login ]>,
+                                LD_LIBRARY_PATH += "/opt/studio12.3/lib/v9",
+                                 GAUSS_SCRDIR = "/scratch/$LOGNAME";
+
+# Gaussian 09
+>> g09 : "Gaussian 09" <<
+g09 * * * * {sh,ksh,bash}:      g09root = "/opt/gaussian",
+                                 <[ . /opt/gaussian/g09/bsd/g09.profile ]>,
+				LD_LIBRARY_PATH += "/opt/studio12/studio12/SUNWspro/lib/v9",
+                                 GAUSS_SCRDIR = "/scratch/$LOGNAME";
+g09 * * * * {csh,tcsh}:         g09root = "/opt/gaussian",
+				LD_LIBRARY_PATH += "/opt/studio12/studio12/SUNWspro/lib/v9",
+                                 <[ source /opt/gaussian/g09/bsd/g09.login ]>,
+                                 GAUSS_SCRDIR = "/scratch/$LOGNAME";
+
+# Gaussian 03
+>> g03 : "Gaussian 03" <<
+g03 * * * * {sh,ksh,bash}:      g03root = "/opt",
+				<[ . /opt/g03/bsd/g03.profile ]>,
+				GAUSS_SCRDIR = "/scratch/$LOGNAME",
+				LD_LIBRARY_PATH += "/opt/studio12/studio12/SUNWspro/lib/v9b";
+g03 * * * * {csh,tcsh}:         g03root = "/opt",
+                                <[ source /opt/g03/bsd/g03.login ]>,
+                                GAUSS_SCRDIR = "/scratch/$LOGNAME",
+				LD_LIBRARY_PATH += "/opt/studio12/studio12/SUNWspro/lib/v9b";
+
+# Blastwave GCC v2
+>> gcc2 : "GNU Compiler Collection v2 ('gcc -v' for exact version when selected)" <<
+gcc2 :			PATH += "/opt/csw/gcc2/bin",
+			MANPATH += "/opt/csw/gcc2/man",
+			INFOPATH += "/opt/csw/gcc2/info" ;
+# Blastwave GCC v3
+>> gcc3 : "GNU Compiler Collection v3 ('gcc -v' for exact version when selected)" <<
+gcc3 :			PATH += "/opt/csw/gcc3/bin",
+			MANPATH += "/opt/csw/gcc3/man",
+			INFOPATH += "/opt/csw/gcc3/info" ;
+
+# Blastwave GCC v4
+>> gcc4 : "GNU Compiler Collection v4 ('gcc -v' for exact version when selected)" <<
+gcc4 :			PATH += "/opt/csw/gcc4/bin",
+			MANPATH += "/opt/csw/gcc4/man",
+			INFOPATH += "/opt/csw/gcc4/info" ;
+
+>> gccfss : "Cool Tools - GCC for SPARC Systems (currently v4.2.0)" <<
+gccfss <= cooltools12 :	PATH += "/opt/gccfss/gcc/bin",
+			MANPATH += "/opt/gccfss/gcc/man";
+
+>> ghc : "Glasgow Haskell Compiler (production version)" <<
+ghc <= ghc-6.8.2 :	<[ /bin/true ]>;
+
+# seems to *really* want LD_LIBRARY_PATH added to...
+>> ghc-6.8.2 : "Glasgow Haskell Compiler 6.8.2" <<
+ghc-6.8.2 <= gcc4 :	PATH += /opt/ghc-6.8.2/bin,
+			MANPATH += /opt/ghc-6.8.2/share/man,
+			LD_LIBRARY_PATH += /opt/csw/lib;
+
+
+>> gnucompat : "Prefer various GNU commands over Solaris versions" <<
+gnucompat :		PATH += /opt/csw/gnu ;
+
+>> gpc : "GNU Pascal Compiler (64-bit compilations only)" <<
+gpc :			PATH += /opt/gpc/20051104/bin,
+			MANPATH += /opt/gpc/20051104/man,
+			INFOPATH += /opt/gpc/20051104/info ;
+
+# >> gsl : "GNU Scientific Library (32-bit) v1.7" <<
+# gsl :			GSL_INCLUDE = "/opt/csw/include/gsl",
+#			GSL_LIB = "/opt/csw/lib";
+
+>> gsl_32bit-1.11 : "GNU Scientific Library (32-bit) v1.11" <<
+gsl_32bit-1.11 :	PATH += "/opt/gsl_32bit-1.11/bin",
+			MANPATH += "/opt/gsl_32bit-1.11/man",
+			GSL_INCLUDE = "/opt/gsl_32bit-1.11/include",
+			GSL_LIB = "/opt/gsl_32bit-1.11/lib";
+
+>> gsl_64bit-1.11 : "GNU Scientific Library (64-bit) v1.11" <<
+gsl_64bit-1.11 :	PATH += "/opt/gsl_64bit-1.11/bin",	
+			MANPATH += "/opt/gsl_64bit-1.11/man",
+			GSL_INCLUDE = "/opt/gsl_64bit-1.11/include",
+			GSL_LIB = "/opt/gsl_64bit-1.11/lib";
+
+# HPCVL Working Template
+>> hwt : "HPCVL Working Template" <<
+hwt :			PATH += "/opt/hwt/hwt.v7.2.hpcvl.studio12u4";
+
+>> matlab : "Matlab (production - R2009bSP1)" <<
+matlab <= matlab-R2009bSP1 :	<[ /bin/true ]> ;
+
+
+>> matlab-r2008b : "Matlab (R2008b)" <<
+matlab-r2008b :		PATH += "/opt/matlab/R2008b/64bit/bin",
+			LM_LICENSE_FILE += "/opt/matlab/R2008b/64bit/licenses/license_sfnode0.dat",
+			LM_LICENSE_FILE += "/opt/matlab/R2008b/64bit/licenses/license_dist.dat";
+
+>> matlab-r2009a : "Matlab (workshop - R2009a)" <<
+matlab-r2009a :		PATH += "/opt/matlab/R2009a/64bit/bin",
+			LM_LICENSE_FILE += "/opt/matlab/R2009a/64bit/licenses/license_ws.dat";
+
+>> matlab-R2009bSP1 : "Matlab R2009b" <<
+matlab-R2009bSP1 :	PATH += "/opt/matlab/R2009bSP1/64bit/bin",
+			LM_LICENSE_FILE += "/opt/matlab/R2009bSP1/64bit/licenses/license_dist.dat";
+
+>> matlab-linux : "Matlab pass to Linux" <<
+matlab-linux :	PATH += "/opt/matlab/R2009bSP1_goToLinux/64bit/bin",
+			LM_LICENSE_FILE += "/opt/matlab/R2009bSP1_goToLinux/64bit/licenses/license_dist.dat";
+
+>> molekel : "Advanced Interactive 3D-Graphics for Molecular Sciences" <<
+molekel :		PATH += /opt/molekel-4.1/bin;
+
+>> moe : "MOE (production - 2008.10)" <<
+moe :           PATH += /opt/moe/2008.10/64bit/bin;
+
+
+# NAG Toolset
+>> nag : "NAG Toolset and Libraries" <<
+nag :			LM_LICENSE_FILE += "/opt/nag/license/license.dat",
+			NAG_KUSARI_FILE = "/opt/nag/license/kusari.dat";
+
+>> nag_compiler : "NAG Compiler" <<
+nag_compiler <= nag:	PATH += "/opt/nag/bin",
+			MANPATH += "/opt/nag/man";
+
+>> netcdf : "Network Common Data Form" <<
+netcdf :		PATH += /opt/netcdf-3.6.2/bin,
+			MANPATH += /opt/netcdf-3.6.2/man,
+			NCDF_LIB = "-L/opt/netcdf-3.6.2/lib -lnetcdf",
+			XAPPLRESDIR = "/opt/netcdf-3.6.2/lib/ncview",
+			NCDF_INC = /opt/netcdf-3.6.2/include;
+
+### Empty path: ###
+>> none : "empty paths" <<
+none :			PATH = "",
+			MANPATH = "",
+			INFOPATH = "",
+			LD_LIBRARY_PATH = "",
+			PKG_CONFIG_PATH = "";
+none * Darwin :		DYLD_LIBRARY_PATH = "" ;
+
+>> nwchem : "NWChem (production - v5.0)" <<
+nwchem <= nwchem50 : <[ /bin/true ]> ;
+
+>> nwchem50 : "NWChem 5.0" <<
+nwchem50 :			PATH += "/opt/nwchem/5.0/64bit/bin",
+				LD_LIBRARY_PATH += "/opt/SUNWhpc/lib/sparcv9";
+
+# NAMD 2
+>> namd : "NAMD2 2.7" <<
+namd :                 PATH += "/opt/namd/2.7/32bit";
+
+
+# OpenFOAM 
+>> openfoam : "OpenFOAM 1.6" <<
+openfoam * * * * {bash}:      <[ . /opt/OpenFOAM/1.6/SunOS64/Gcc/OPENMPI/etc/bashrc ]>;
+
+>> ox4 : "An Object-Oriented Matrix Language" <<
+ox4:			PATH += "/opt/ox-4/bin" ;
+
+>> petsc : "PETSc (production - v2.3.3-p13)" <<
+petsc <= petsc-2.3.3-p13 : <[ /bin/true ]> ;
+
+>> petsc-3.1-p4 : "PETSc v3.1-p4" <<
+petsc-3.1-p4 : PATH += "/opt/PETSc/3.1-p4/32bit/solaris/bin",
+			 PETSC_DIR += "/opt/PETSc/3.1-p4/32bit/solaris",
+			 PETSC_ARCH += "solaris";
+
+>> petsc-2.3.3-p13 : "PETSc v2.3.3-p13" <<
+petsc-2.3.3-p13 <= ct7 : PATH += "/opt/petsc-2.3.3-p13/bin",
+			 PETSC_DIR += "/opt/petsc-2.3.3-p13",
+			 PETSC_ARCH += "sunfire";
+
+>> petsc-3.5.2 : "PETSc v3.5.2 (legacy)" <<
+petsc-3.5.2 : PATH += "/opt/petsc-2.3.3-p13/bin",
+		         PETSC_DIR += "/opt/petsc/3.5.2",
+			 PETSC_ARCH += "arch-sunos5-c-opt";
+
+# PowerFlow
+>> powerflow : "PowerFlow (production - v4.0d)" <<
+powerflow <= powerflow40d : <[ /bin/true ]> ;
+
+>> powerflow40c : "PowerFlow 4.0d" <<
+powerflow40d :		PATH += "/opt/powerflow-4.0d/bin",
+			LM_LICENSE_FILE += "/opt/powerflow-4.0d/flexlm/licenses/license.dat";
+
+# PVM
+>> pvm : "PVM 3" <<
+pvm :			PVM_ROOT = "/opt/pvm3",
+			PVM_ARCH = "SUN4SOL2",
+			PVM_DPATH = "$PVM_ROOT/lib/pvmd";
+
+>> R : "R statistical software (production alias)" <<
+R <= R-2.15.2 :		<[ /bin/true ]> ;
+
+>> R_64bit : "R statistical software (production alias, 64 bit)" <<
+R_64bit <= R-2.15.2_64bit :		<[ /bin/true ]> ;
+
+>> R-2.6.2 : "R statistical software (64-bit, extensions)" <<
+R-2.6.2 :		PATH += /opt/R-2.6.2/bin,
+ 			MANPATH += /opt/R-2.6.2/share/man,
+			INFOPATH += /opt/R-2.6.2/info ;
+
+>> R-2.13.1 : "R statistical software (older version)" <<
+R-2.13.1 :		PATH += /opt/R-2.13.1/bin,
+ 			MANPATH += /opt/R-2.13.1/share/man,
+			INFOPATH += /opt/R-2.13.1/info ;
+
+>> R-2.15.2 : "R statistical software (newest version, 32-bit)" <<
+R-2.15.2 :		PATH += /opt/R/2.15.2/32bit/bin,
+ 			MANPATH += /opt/R-2.15.2/32bit/share/man,
+			INFOPATH += /opt/R-2.15.2/32bit/info ;
+
+>> R-2.15.2_64bit : "R statistical software (newest version, 64-bit)" <<
+R-2.15.2_64bit :	PATH += /opt/R/2.15.2/64bit/bin,
+ 			MANPATH += /opt/R-2.15.2/64bit/share/man,
+			INFOPATH += /opt/R-2.15.2/64bit/info ;
+
+# SAM/QFS Tools 
+>> sam : "SAM/QFS Tools" <<
+sam :			PATH += "/opt/SUNWsamfs/bin",
+			MANPATH += "/opt/SUNWsamfs/man";
+
+>> scalapack : "Scalable LAPACK v1.7.4" <<
+scalapack * SunOS :		LD_LIBRARY_PATH += /opt/scalapack-1.7.4 ;
+
+>> scilab : "Scilab v4.1.1" <<
+scilab :		PATH += /opt/scilab-4.1.1/bin ;
+
+>> sfw : "Sun Freeware (companion software)" <<
+sfw :	PATH += /usr/sfw/bin,
+	MANPATH += /usr/sfw/share/man,
+	INFOPATH += /usr/sfw/share/info;
+
+>> site : "Locally installed commands" <<
+site :			PATH += /opt/local/bin,
+			MANPATH += /opt/local/share/man:/opt/local/man,
+			INFOPATH += /opt/local/share/info;
+
+# Sun Grid Engine 6 
+>> sge6 : "Sun Grid Engine 6" <<
+sge6 * * * * {sh,ksh,bash} :   <[ . /opt/n1ge6/default/common/settings.sh ]> ;
+sge6 * * * * {csh,tcsh} : <[ source /opt/n1ge6/default/common/settings.csh ]> ;
+
+# Stata
+>> stata : "Stata release 9 updated" <<
+stata :			PATH += "/opt/stata";
+
+# Studio 7
+>> studio7 : "Sun Studio/Forte 7 Compilers and Tools" <<
+studio7 :		PATH += "/opt/studio7/SUNWspro/bin",
+			MANPATH += "/opt/studio7/SUNWspro/man";
+
+# Studio 8
+# >> studio8 : "Sun Studio 8 Compilers and Tools" <<
+# studio8 :		PATH += "/opt/studio8/SUNWspro/bin",
+# 			MANPATH += "/opt/studio8/SUNWspro/man";
+
+#>> studio10 : "Sun Studio 10 Compilers and Tools" <<
+#studio10 :		PATH += "/opt/studio10/SUNWspro/bin",
+#			MANPATH += "/opt/studio10/SUNWspro/man";
+
+>> studio11 : "Sun Studio 11 Compilers and Tools" <<
+studio11 :		PATH += "/opt/studio11/SUNWspro/bin",
+			MANPATH += "/opt/studio11/SUNWspro/man";
+
+# NB: no >>...<< here.  Internal target that doesn't show up in "use -l"
+m9000env :	M9KFLAGS="-xtarget=sparc64vii -xcache=64/64/2:6144/256/12 -xarch=sparcima",
+		FMAFLAGS="-xarch=sparcfmaf -fma=fused";
+
+>> studio12 : "Sun Studio 12 Compilers and Tools" <<
+studio12 <= m9000env :		PATH += "/opt/studio12/studio12/SUNWspro/bin",
+				MANPATH += "/opt/studio12/studio12/SUNWspro/man";
+
+>> studio12u1 : "Sun Studio 12 Update 1 Compilers and Tools" <<
+studio12u1 <= m9000env :	PATH += "/opt/studio12/SUNWspro/bin",
+				MANPATH += "/opt/studio12/SUNWspro/man";
+
+>> studio12u2 : "Sun Studio 12 Update 2 Compilers and Tools" <<
+studio12u2 <= m9000env :        PATH += "/opt/studio12.2/prod/bin",
+                                MANPATH += "/opt/studio12.2/man";
+
+>> studio12u3 : "Sun Studio 12 Update 3 Compilers and Tools" <<
+studio12u3 <= m9000env :        PATH += "/opt/studio12.3/bin",
+                                MANPATH += "/opt/studio12.3/man";
+
+>> studio12u4 : "Sun Studio 12 Update 4 Compilers and Tools" <<
+studio12u4 <= m9000env :        PATH += "/opt/studio12.4/bin",
+                                MANPATH += "/opt/studio12.4/man";
+
+>> solarisstudio12.4 : "Sun Studio 12 Update 4 Compilers and Tools (for T7 beta)" <<
+solarisstudio12.4 :        PATH += "/opt/solarisstudio12.4/bin",
+                           LD_LIBRARY_PATH += "/opt/solarisstudio12.4/lib",
+                           LD_LIBRARY_PATH_64 += "/opt/solarisstudio12.4/lib/v9",
+                           MANPATH += "/opt/solarisstudio12.4/man";
+
+>> studio12x : "Sun Studio 12 Express (11/08) Compilers and Tools" <<
+studio12x <= m9000env :		PATH += "/opt/studio12x/SUNWspro/bin",
+				MANPATH += "/opt/studio12x/SUNWspro/man";
+
+>> ssx0903 : "Sun Studio Express (3/09) Compilers and Tools" <<
+ssx0903 <= m9000env :           PATH += "/opt/SSX0903/bin",
+                                MANPATH += "/opt/SSX0903/man";
+
+# System administration binaries
+>> sysadm : "System administration commands" <<
+sysadm :			PATH += /usr/sbin:/sbin ;
+
+
+### Standard things that everyone should have: ###
+>> system : "Standard Solaris commands" <<
+system :			PATH += /usr/bin,
+				MANPATH += /usr/share/man,
+				INFOPATH += /usr/share/info;
+
+>> tcltk-32 : "Tcl & Tk 8.5.2 (32 bit)" <<
+tcltk-32 :	TCL_LIBRARY=/opt/tcltk/32/lib/tcl8.5,
+		TK_LIBRARY=/opt/tcltk/32/lib/tcl8.5;
+>> tcltk-64 : "Tcl & Tk 8.5.2 (64 bit)" <<
+tcltk-64 :	TCL_LIBRARY=/opt/tcltk/64/lib/tcl8.5,
+		TK_LIBRARY=/opt/tcltk/64/lib/tcl8.5;
+
+# >> totalview : "Totalview" <<
+# totalview : 			PATH += "/opt/totalview-8.0.0.2/toolworks/totalview.8.0.0-2/bin",
+#				LM_LICENSE_FILE += "/opt/totalview-8.0.0.2/toolworks/flexlm-10.8.0-3/license.demo";
+
+# VMD (current version)
+>> VMD : "Visualization Software Version  1.8.7" <<
+vmd :		PATH += "/opt/vmd/1.8.7/64bit/bin";
+
+# Workshop 6
+>> workshop6 : "Sun Workshop 6 Compilers and Tools" <<
+workshop6 :		PATH += "/opt/workshop6/SUNWspro/bin",
+			MANPATH += "/opt/workshop6/SUNWspro/man";
+
+# X binaries etc
+>> x11 : "X11 Windowing System Tools and Libraries" <<
+x11 :                           PATH += "/usr/openwin/bin",
+                                MANPATH += "/usr/openwin/man",
+				PATH += "/usr/dt/bin",
+                                MANPATH += "/usr/dt/man";
+
+>> xpg4 : "Prefer XPG4 binaries over /usr/bin" <<
+xpg4 :				PATH += /usr/xpg4/bin ;
+
+>> xpg6 : "Prefer XPG6 binaries over /usr/bin" <<
+xpg6 :				PATH += /usr/xpg6/bin ;
+
+### Include user's own packages information: ###
+(include ~/.packages)
